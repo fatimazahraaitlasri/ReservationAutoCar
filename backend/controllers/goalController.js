@@ -1,10 +1,11 @@
 const asyncHAndler = require('express-async-handler')
-
+const  Goal = require('../Models/goalModel')
 
 
 
 const getGoals = asyncHAndler( async( req , res)=>{
-    res.status(200).json({massage : 'get goals'})
+   const  goals = await Goal.find({})
+    res.status(200).json(goals)
     
 })
 
@@ -15,7 +16,10 @@ const setGoal =asyncHAndler( async( req , res)=>{
         throw new Error('please add a text field')
 
     }
-    res.status(200).json({massage : 'setee goal'})
+    const goal = await Goal.create({
+        text: req.body.text
+    })
+    res.status(200).json(goal)
     
 })
 
