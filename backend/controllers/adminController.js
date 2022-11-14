@@ -14,7 +14,8 @@ const registerAdmin = asyncHAndler(async (req, res) => {
     }
     // check if user exists
     const adminExists = await AdminModel.findOne({ email });
-    if (adminExists) {
+    if (adminExists)
+    {
       res.status(400)
       throw new Error("Admin already exists");
     }
@@ -44,7 +45,7 @@ const registerAdmin = asyncHAndler(async (req, res) => {
 
 
 const loginAdmin =asyncHAndler(async(req, res) => {
-    const {email , password} = req.body
+    const {email , password} = req.body           
     // check for user email
     const admin = await AdminModel.findOne({email})
     console.log(bcrypt.compare(password,admin.password))
@@ -53,11 +54,9 @@ const loginAdmin =asyncHAndler(async(req, res) => {
         res.json({
             id: admin.id,
             name:admin.name,
-            email:admin.email,
+            email:admin.email,  
             // token: generateToken(user.id)
-
-            
-        })
+           })
     }else
     {
         res.status(400)

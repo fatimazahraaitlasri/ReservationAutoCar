@@ -1,18 +1,21 @@
-import "./css/App.css"
-import "./index.css"
-import { Login , Container , Footer } from "./components/index"     
+import "./css/App.css";
+import "./index.css";
+import { Login, Register } from "./pages/index";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Layout from "../src/components/leaout/Layout";
+
 const App = () => {
-return (
-<>
-<Header text="New header" />      
-<Container />  
-<Footer />    
-<h1>hello world</h1>
-
-
-
-</>
-
-
-)}
-export default App
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />}/>
+          <Route path="/test" element={<Home />}/>
+          <Route path="/register" element={<Register />}/>
+        </Routes> 
+      </Router>
+    </>
+  );
+};
+export default App;

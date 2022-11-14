@@ -3,6 +3,14 @@ const asyncHAndler = require('express-async-handler')
 const User = require('../Models/userModel')
 const { error } = require('console')
 
+
+const httpHandler = function(req ,res ){
+    if (req.url === '/' && req.method === 'GET') {
+        res.setHeader('Access-Control-Allow-Origin','http://domain-a.localhost:8000')
+    }
+
+}
+
 const protect = asyncHAndler(async(req , res , next) => {
     let token 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
